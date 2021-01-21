@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"0>
+    <style>
+        .box{
+            border: 4px solid;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+        <h2 class="jumbotron" style="color: #07C8D1; font-weight: bold;">
+            The list of things to do: {{count}}
+            <form method="POST" action="{% url 'addTodo' %}">
+                {% csrf_token %}
+            <button class="btn btn-secondary btn-lg" style="padding: 6px; margin:10px; font: 20px Montserrat, sans-serif;"><a href='/addTodo' style="text-decoration: none; color: #D4DAE6">Add</a></button>
+            </form>
+        </h2>
+            <div class="card-columns" style="padding: 10px; margin: 20px;"></div>
+            
+            
+            {%for todo in todos %}
+            
+                <div class="card box container" style="padding: 10px; color:#747C8C; background-color:#61c2c5;">
+                    <br>
+                    <p class="card-title">
+                        <div class="card-body container" >
+                                <p class="font-weight-bold" style="font-size: 30px;">{{todo.task}}</p>
+                        </p>
+                            <hr>
+                            <p> Created: {{todo.date_created}}</p>
+                            <hr>     
+                            <form action="/removeTodo/{{todo.id}}" method="post">
+                                {% csrf_token %}
+                                <input type="submit" value="Delete" class="btn btn-secondary btn-lg" style="background-color: #747C8C; width:fit-content; padding: 4px; margin:10px; font: 20px Montserrat, sans-serif;">
+                            </form>
+                        </div>
+                </div>
+            </div>
+            <br>
+            
+            {%endfor%}
+          
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
