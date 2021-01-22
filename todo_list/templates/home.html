@@ -15,7 +15,7 @@
 </head>
 <body>
         <h2 class="jumbotron" style="color: #07C8D1; font-weight: bold;">
-            The list of things to do: {{count}}
+            The todo list: {{count}}
             <form method="POST" action="{% url 'addTodo' %}">
                 {% csrf_token %}
             <button class="btn btn-secondary btn-lg" style="padding: 6px; margin:10px; font: 20px Montserrat, sans-serif;"><a href='/addTodo' style="text-decoration: none; color: #D4DAE6">Add</a></button>
