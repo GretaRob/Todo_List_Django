@@ -14,7 +14,7 @@ This project allows users to create tasks. You can update and delete items.
 
 * Python 3
 
-* Text editor eg Visual Studio Code
+* Text editor e.g. Visual Studio Code
 
 ## Getting Files
 
